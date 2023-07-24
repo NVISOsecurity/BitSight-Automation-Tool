@@ -4,6 +4,7 @@ try:
     import sys
     from enum import Enum
     from sys import exit
+    import configparser
 except ModuleNotFoundError as ex:
     file = str(ex).split("'")[-2]
     print(f"[-] Module '{file}' not Found! Please make sure you have installed all the dependencies correctly.")
@@ -11,7 +12,24 @@ except ModuleNotFoundError as ex:
 
 class ArgumentHandler():
     #Replace with your groups Below.
-    groups = ['{your-groups}']
+    groups = []
+    try:
+        config = configparser.ConfigParser(allow_no_value=True)
+        config.read("groups.conf")
+        for group in config.items("Groups"):
+            groups.append(group[0])
+        if "your-groups" in groups or "one-per-line" in groups:
+            print("Finalize the configuration before proceeding with the tool's execution...")
+            exit(1)
+    except configparser.NoSectionError:
+        print("Your configuration is not compatible with this tool.")
+        print("Please recreate the configuration file based on the steps provided in the README file.")
+        print("The file should look like below\n")
+        print("[Groups]")
+        print("group1")
+        print("group2")
+        print("group3")
+        exit(1)
 
     ### init function that automatically sets everything up
     ### Arguments: 
@@ -100,7 +118,7 @@ class ArgumentHandler():
     ### Returns:
     ###         Nothing.
     def ConfigureParser(self):
-        parser = argparse.ArgumentParser(prog='bitsight_automation.py', description='BitSight Automation script to automate certain operations like historical report generation, findings categorization, asset list retrieval, reverse lookup of IP addresses and current ratings for entites', epilog='For any questions or feedback feel free to open a GitHub Issue' )
+        parser = argparse.ArgumentParser(prog='bitsight_automation.py', description='BitSight Automation tool automates certain operations like historical report generation, findings categorization, asset list retrieval, reverse lookup of IP addresses and current ratings for entities', epilog='For any questions or feedback feel free to open a GitHub Issue' )
         parser.add_argument('operation', help='The operation to perform.', choices=["rating", "historical", "findings", "assets", "reverse_lookup", 'list', "update"])
         parser.add_argument('-g', '--group', dest='group', help='The group of entities you want to query data for.', choices=self.groups)
         parser.add_argument('-e', '--entity', dest='entity', help='A specific entity you want to query data for')

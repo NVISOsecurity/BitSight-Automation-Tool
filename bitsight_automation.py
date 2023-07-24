@@ -248,8 +248,8 @@ def reverse_lookup(guid_map, search):
 
 def init():
 
-    print("Files are empty, initializing script... Gathering information for your convenience... This may take a while...\n")
-    print("If this is your first execution of this script, you can consider it normal...")
+    print("Files are empty, initializing tool... Gathering information for your convenience... This may take a while...\n")
+    print("If this is your first execution of this tool, you can consider it normal...")
 
     cmp = Companies(session)
     result = cmp.info()
@@ -334,7 +334,7 @@ def load_configs():
 
         return group_map, guid_map
     except FileNotFoundError as ex:
-        print(f"File not found: {str(ex).split(':')[1]}. Please copy the {str(ex).split(':')[1]} to the same directory as this script and try again.")
+        print(f"File not found: {str(ex).split(':')[1]}. Please copy the {str(ex).split(':')[1]} to the same directory as this tool and try again.")
         exit(1)
 
 def list_config(guid_map):
@@ -533,7 +533,7 @@ if __name__ == '__main__':
         main()
     except Exception as ex:
         if 'socket' in str(ex) or 'connection' in str(ex):
-            print("The script was unable to connect to BitSight's server. If the script is behind a Firewall it might be blocked or you may not have an internet connection.")
+            print("The tool was unable to connect to BitSight's server. If the tool is behind a Firewall it might be blocked or you may not have an internet connection.")
             exit(1)
         else:
             print("Please verify that the API key you are using is the correct...")

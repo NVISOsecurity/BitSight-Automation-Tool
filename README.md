@@ -1,8 +1,8 @@
 # BitSight Automation Tool
 
-This script is an automation tool for BitSight. It has the ability to perform different actions, some of them can be performed over the GUI interface of BitSight while some of them cannot.
+BitSight Automation was developed to automate certain manual procedures and extract information such as ratings, assets, findings, etc. Automating most of these tasks is crucial for simplicity and time saving. Besides that, this tool also provides the possibility to collaborate with Scheduled Tasks and cronjobs. You can configure the tool to execute in certain intervals or dates, and retrieve the results from the desired folder without needing to interact with it.
 
-This script leverages the https://github.com/InfosecSapper/BitSightAPI python wrapper for BitSight's API.
+This tool leverages the https://github.com/InfosecSapper/BitSightAPI python wrapper for BitSight's API.
 
 Developed by: Konstantinos Papanagnou (konstantinos.papanagnou@nviso.eu)
 
@@ -17,8 +17,8 @@ usage: bitsight_automation.py [-h] [-g {{your-groups}}] [-e ENTITY] [-v]
                               [-so {alphanumerically,alphabetically}] [--search SEARCH] [--months MONTHS]
                               {rating,historical,findings,assets,reverse_lookup,list,update}
 
-BitSight Automation script to automate certain operations like historical report generation, findings categorization,
-asset list retrieval, reverse lookup of IP addresses and current ratings for entites
+BitSight Automation tool automates certain operations like historical report generation, findings categorization, 
+asset list retrieval, reverse lookup of IP addresses and current ratings for entities
 
 positional arguments:
   {rating,historical,findings,assets,reverse_lookup,list,update}
@@ -44,11 +44,11 @@ For any questions or feedback feel free to open a GitHub Issue on https://github
 
 ## Setup
 
-- The script is standalone, no further installation is required (If you are running on Linux, you can optionally add it to your path by creating a link to /usr/bin)
+- The tool is standalone, no further installation is required (If you are running on Linux, you can optionally add it to your path by creating a link to /usr/bin)
 
 - Install the requirements.txt file (pip install -r requirements.txt)
 
-- Before using this script you need to setup some basic information. More specifically you need to update a value in ArgumentsHandler.py (replace {your-groups} with your groups) in line 15, and add an environment variable called BITSIGHT_API_KEY with your API key on your system.
+- Before using this tool you need to setup some basic information. More specifically you need to add an environment variable called BITSIGHT_API_KEY with your API key on your system and define your groups in the groups.conf file. The structure allows for 1 group per line (You can define as many groups as you need).
 
 - You also have to populate your guid_mapper.json files and group_mapper.json files. Both of the files are dictionary based. There are two ways to set this up.
   1. Populate your group_mapper.json (Only the structure of the groups or the entire thing) and then issue an update command. (If your entity names match they will not be duplicated.)
@@ -109,7 +109,7 @@ Example usage:
 4. Retrieve the current scores for each entity in Group1 (Including Average) and sort alphanumerically: `python bitsight_automation.py rating -g "Group1" -so alphanumerically`.
 5. Retrieve all the scores for all subcompanies: `python bitsight_automation.py rating -g Root`
 
-Note that if you utilize both the -e and -g arguments the script will automatically return data only for the -e argument. The -g is going to be ignored. 
+Note that if you utilize both the -e and -g arguments the tool will automatically return data only for the -e argument. The -g is going to be ignored. 
 
 #### historical
 The historical operation will query BitSight and pull the scores of the last few months you requested for. In case you supply a group, you will get a breakdown of all the data within that group. This operation requires either the -e (--entity) or -g (--group) argument in addition to the --months argument to work.
@@ -181,12 +181,12 @@ The list operation will output the correlation between the entity's name and Bit
 ```
 
 #### update
-The update operation will automatically update the script and its respective JSON files. Make sure to fill in the correct data, as you will not be able to change this in a future occasion without manually modifying the JSON files themselves.
+The update operation will automatically update the tool and its respective JSON files. Make sure to fill in the correct data, as you will not be able to change this in a future occasion without manually modifying the JSON files themselves.
 
 This operation does not require any optional arguments.
 
 Example usage:
-1. Update the script: `python bitsight_automation.py update`
+1. Update the tool: `python bitsight_automation.py update`
 
 
 For any questions or feedback please open a GitHub Issue.
