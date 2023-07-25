@@ -1,0 +1,11 @@
+{
+    "Root":[
+      {"Group1": "Single Entity"},
+      {"Cluster Group2": ["EntityOne", "EntityTwo", "EntityThree"]},
+      {"Bigger Cluster Group3": [
+        {"SubCluster": ["Entity1", "Entity2"]},
+        {"SubCluster2": ["EntityUno", "EntityDos"]}
+      ]},
+      "Random Entity that sits alone under the root"
+    ]
+  }
