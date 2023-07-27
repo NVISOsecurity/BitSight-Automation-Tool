@@ -133,7 +133,7 @@ The findings operation will query BitSight and pull the latest findings of the e
 ###### Available options for -g: {your-groups}
 ###### Available options for -s: {"All", "Critical/High", "Critical", "High", "Medium", Low"}
 
-This command writes to a file with the naming convention of: bitsight_{severity}-findings-{entity/group}-YYYY-MM-DD.csv
+This command writes to a file with the naming convention of: bitsight_{severity}_findings_{entity/group}_YYYY-MM-DD.csv
 
 Example usage:
 1. Retrieve the critical findings for EntityOne: `python bitsight_automation.py findings -e EntityOne -s Critical`
@@ -148,7 +148,7 @@ The assets operation will query BitSight and pull all the findings of an entity 
 
 ###### Available options for -e: Any
 
-This command writes to a file with the naming convention of: bitsight_asset_list-{entity}-YYYY-MM-DD.csv
+This command writes to a file with the naming convention of: bitsight_asset_list_{entity}_YYYY-MM-DD.csv
 
 It first queries for a total number of assets on an entity. Then it will retrieve a list of assets for that given entity.
 

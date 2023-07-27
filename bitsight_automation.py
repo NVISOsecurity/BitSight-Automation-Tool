@@ -132,7 +132,7 @@ def convert_json_to_csv(entity, json_data, severity, verbose):
         headers = list(json_data['results'][0].keys())
         headers.append('remediation_tips')
         count = 0
-        with open(f'bitsight_{severity}-findings-{entity}-{str(datetime.now().date())}.csv', 'w', newline='', encoding='utf-8') as handle:
+        with open(f'bitsight_{severity}_findings_{entity}_{str(datetime.now().date())}.csv', 'w', newline='', encoding='utf-8') as handle:
             csv_writer = csv.writer(handle)
             csv_writer.writerow(headers)
 
@@ -178,7 +178,7 @@ def convert_json_to_csv(entity, json_data, severity, verbose):
                 count += 1
         if verbose:
             print("Findings count: " + str(count))
-        print(f'[+] Data saved to bitsight_{severity}-findings-{entity}-{str(datetime.now().date())}.csv')
+        print(f'[+] Data saved to bitsight_{severity}_findings_{entity}_{str(datetime.now().date())}.csv')
     except IndexError as ex:
         print("It appears as there are no findings in " + entity + " or there is something wrong with the API. Please validate the old fashioned way using your browser.\nMore Details: "+ str(ex))
         print("It might be the case you do not have a 'Total Risk Monitoring' subscription. The 'Risk Monitoring' subscription is unable to work with the API for this operation")
@@ -199,14 +199,14 @@ def retrieve_assets(guid, entity, verbose):
     try:
         assets = cmp.info('asset risk matrix')
         print('*********** Asset List ************')
-        with open(f'bitsight_asset_list-{entity}-{datetime.now().date()}.csv', 'w', newline='') as handle:
+        with open(f'bitsight_asset_list_{entity}_{datetime.now().date()}.csv', 'w', newline='') as handle:
             csv_writer = csv.writer(handle)
             csv_writer.writerow(['Assets'])
             for asset in assets['assets']:
                 if verbose:
                     print(asset['asset'])
                 csv_writer.writerow([asset['asset']])
-        print(f'[+] Asset List saved to: bitsight_asset_list-{entity}-{datetime.now().date()}.csv')
+        print(f'[+] Asset List saved to: bitsight_asset_list_{entity}_{datetime.now().date()}.csv')
     except KeyError as ex:
         print("Cannot retrieve asset list for " + entity + "\nA 'Total Risk Monitoring' subscription is required for this operation.\nMore Details: " + str(assets))
 
