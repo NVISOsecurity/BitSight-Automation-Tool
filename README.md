@@ -2,6 +2,8 @@
 
 BitSight Automation was developed to automate certain manual procedures and extract information such as ratings, assets, findings, etc. Automating most of these tasks is crucial for simplicity and time saving. Besides that, this tool also provides the possibility to collaborate with Scheduled Tasks and cronjobs. You can configure the tool to execute in certain intervals or dates, and retrieve the results from the desired folder without needing to interact with it.
 
+BlogPost: https://blog.nviso.eu/2023/08/08/introducing-bitsight-automation-tool/
+
 This tool leverages the https://github.com/InfosecSapper/BitSightAPI python wrapper for BitSight's API.
 
 Developed by: Konstantinos Papanagnou (konstantinos.papanagnou@nviso.eu)
