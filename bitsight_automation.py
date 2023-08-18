@@ -210,8 +210,8 @@ def retrieve_assets(guid, entity, verbose):
     except KeyError as ex:
         print("Cannot retrieve asset list for " + entity + "\nA 'Total Risk Monitoring' subscription is required for this operation.\nMore Details: " + str(assets))
 
-def reverse_lookup(guid_map, search):
-    cmp = Companies(session, guid_map['Global'])
+def reverse_lookup(guid_map, group_map, search):
+    cmp = Companies(session, guid_map[list(group_map.keys())[0]])
     asset_list = cmp.info('assets', {'limit':30000})
     wildcard_name = False
     iprange = False
@@ -510,7 +510,7 @@ def main():
             exit(1)
         retrieve_assets(guid_map[arghandler.entity], arghandler.entity, arghandler.verbose)    
     elif arghandler.operation == 'reverse_lookup':
-        reverse_lookup(guid_map, arghandler.search)
+        reverse_lookup(guid_map, group_map, arghandler.search)
     elif arghandler.operation == 'update':
         update(guid_map, group_map)
         print("Update completed!")
